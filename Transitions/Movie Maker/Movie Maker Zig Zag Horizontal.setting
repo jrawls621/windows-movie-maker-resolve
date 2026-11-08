@@ -1,0 +1,57 @@
+{
+	Tools = ordered() {
+		MovieMaker_Zig_Zag_Horizontal = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput { SourceOp = "WMMWipe", Source = "Image1", },
+				MainInput2 = InstanceInput { SourceOp = "WMMWipe", Source = "Image2", },
+				Input1 = InstanceInput { SourceOp = "WMMWipe", Source = "NumberIn2", Name = "Edge Softness", Default = 1.0, MinScale = 0, MaxScale = 3, },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "WMMWipe", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				WMMWipe = Custom {
+					CtrlWZoom = false,
+					Inputs = {
+						NumberIn1 = Input { SourceOp = "WMMProgress", Source = "Value", },
+						NumberIn2 = Input { Value = 1.0, },
+						Setup1 = Input { Value = "w/h", },
+						Setup2 = Input { Value = "0.5+0.104", },
+						Setup3 = Input { Value = "max(0.025000*n2, 0.000001)", },
+						Setup4 = Input { Value = "0 + (s2-(0))*(-0.02070+(1.04139)*n1)", },
+						Intermediate1 = Input { Value = "0.208*(0.5-2*abs((((x*s1/0.29443+-0.039))-floor((x*s1/0.29443+-0.039)))-0.5))", },
+						Intermediate2 = Input { Value = "abs((0.5-y)-i1)", },
+						Intermediate3 = Input { Value = "", },
+						Intermediate4 = Input { Value = "if(n1<=0, 0, if(n1>=1, 1, min(max((s4-i2)/s3+0.5, 0), 1)))", },
+						RedExpression = Input { Value = "r1+(r2-r1)*i4", },
+						GreenExpression = Input { Value = "g1+(g2-g1)*i4", },
+						BlueExpression = Input { Value = "b1+(b2-b1)*i4", },
+						AlphaExpression = Input { Value = "a1+(a2-a1)*i4", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 0 } },
+				},
+				WMMProgress = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Custom" }, },
+						Lookup = Input { SourceOp = "WMMProgressLookup", Source = "Value", },
+					},
+				},
+				WMMProgressLookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_Zig_Zag_Horizontal"
+}

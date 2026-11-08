@@ -1,0 +1,131 @@
+{
+	Tools = ordered() {
+		MovieMaker_TwoLineSportsScoreboard = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input3 = InstanceInput { SourceOp = "Txt1", Source = "Style", },
+				Input4 = InstanceInput { SourceOp = "Txt1", Source = "Red1", Name = "Text Color", ControlGroup = 1, Default = 1, },
+				Input5 = InstanceInput { SourceOp = "Txt1", Source = "Green1", ControlGroup = 1, Default = 1, },
+				Input6 = InstanceInput { SourceOp = "Txt1", Source = "Blue1", ControlGroup = 1, Default = 1, },
+				Input7 = InstanceInput { SourceOp = "BG", Source = "TopLeftRed", Name = "Background Color", ControlGroup = 2, Default = 0.0627, },
+				Input8 = InstanceInput { SourceOp = "BG", Source = "TopLeftGreen", ControlGroup = 2, Default = 0.251, },
+				Input9 = InstanceInput { SourceOp = "BG", Source = "TopLeftBlue", ControlGroup = 2, Default = 0.502, },
+				Input10 = InstanceInput { SourceOp = "BG", Source = "TopLeftAlpha", Name = "Background Opacity", Default = 1, },
+				Input20 = InstanceInput { SourceOp = "Txt2", Source = "StyledText", Name = "Line 2 Text", },
+				Input21 = InstanceInput { SourceOp = "Bar", Source = "TopLeftRed", Name = "Bar Color", },
+				Input22 = InstanceInput { SourceOp = "Bar", Source = "TopLeftGreen", Name = "None", },
+				Input23 = InstanceInput { SourceOp = "Bar", Source = "TopLeftBlue", Name = "None", },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "M1", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				BG = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0.0627, },
+						TopLeftGreen = Input { Value = 0.251, },
+						TopLeftBlue = Input { Value = 0.502, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				Bar = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 1.0, },
+						TopLeftGreen = Input { Value = 0.145, },
+						TopLeftBlue = Input { Value = 0.047, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				BarMsk = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.5, (1-0.153+iif(((time/comp.RenderEnd)*116.0)<4, 0.306, iif(((time/comp.RenderEnd)*116.0)<8, 0.306+(-0.10399999999999998)*(((time/comp.RenderEnd)*116.0)-(4))/(4), iif(((time/comp.RenderEnd)*116.0)<14, 0.202+(-0.202)*(((time/comp.RenderEnd)*116.0)-(8))/(6), iif(((time/comp.RenderEnd)*116.0)<100, 0+(0)*(((time/comp.RenderEnd)*116.0)-(14))/(86), iif(((time/comp.RenderEnd)*116.0)<104, 0+(0.039)*(((time/comp.RenderEnd)*116.0)-(100))/(4), iif(((time/comp.RenderEnd)*116.0)<108, 0.039+(0.144)*(((time/comp.RenderEnd)*116.0)-(104))/(4), iif(((time/comp.RenderEnd)*116.0)<111, 0.183+(0.123)*(((time/comp.RenderEnd)*116.0)-(108))/(3), 0.306)))))))))", },
+						Width = Input { Expression = "2", },
+						Height = Input { Expression = "0.306", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				MBar = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "BG", Source = "Output", },
+						Foreground = Input { SourceOp = "Bar", Source = "Output", },
+						EffectMask = Input { SourceOp = "BarMsk", Source = "Mask", },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Microsoft", },
+						Size = Input { Expression = "0.080132*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.858)", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+					},
+				},
+				X0 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.858)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5, 0.5+iif(((time/comp.RenderEnd)*116.0)<4, 0.306, iif(((time/comp.RenderEnd)*116.0)<8, 0.306+(-0.10399999999999998)*(((time/comp.RenderEnd)*116.0)-(4))/(4), iif(((time/comp.RenderEnd)*116.0)<14, 0.202+(-0.202)*(((time/comp.RenderEnd)*116.0)-(8))/(6), iif(((time/comp.RenderEnd)*116.0)<100, 0+(0)*(((time/comp.RenderEnd)*116.0)-(14))/(86), iif(((time/comp.RenderEnd)*116.0)<104, 0+(0.039)*(((time/comp.RenderEnd)*116.0)-(100))/(4), iif(((time/comp.RenderEnd)*116.0)<108, 0.039+(0.144)*(((time/comp.RenderEnd)*116.0)-(104))/(4), iif(((time/comp.RenderEnd)*116.0)<111, 0.183+(0.123)*(((time/comp.RenderEnd)*116.0)-(108))/(3), 0.306))))))))", },
+						Input = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				M0 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MBar", Source = "Output", },
+						Foreground = Input { SourceOp = "X0", Source = "Output", },
+					},
+				},
+				Txt2 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows Movie Maker", },
+						Size = Input { Expression = "0.086296*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.758)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				X1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.758)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5, 0.5+iif(((time/comp.RenderEnd)*116.0)<4, 0.306, iif(((time/comp.RenderEnd)*116.0)<8, 0.306+(-0.10399999999999998)*(((time/comp.RenderEnd)*116.0)-(4))/(4), iif(((time/comp.RenderEnd)*116.0)<14, 0.202+(-0.202)*(((time/comp.RenderEnd)*116.0)-(8))/(6), iif(((time/comp.RenderEnd)*116.0)<100, 0+(0)*(((time/comp.RenderEnd)*116.0)-(14))/(86), iif(((time/comp.RenderEnd)*116.0)<104, 0+(0.039)*(((time/comp.RenderEnd)*116.0)-(100))/(4), iif(((time/comp.RenderEnd)*116.0)<108, 0.039+(0.144)*(((time/comp.RenderEnd)*116.0)-(104))/(4), iif(((time/comp.RenderEnd)*116.0)<111, 0.183+(0.123)*(((time/comp.RenderEnd)*116.0)-(108))/(3), 0.306))))))))", },
+						Input = Input { SourceOp = "Txt2", Source = "Output", },
+					},
+				},
+				M1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "M0", Source = "Output", },
+						Foreground = Input { SourceOp = "X1", Source = "Output", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_TwoLineSportsScoreboard"
+}

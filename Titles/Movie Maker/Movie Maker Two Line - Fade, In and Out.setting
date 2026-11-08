@@ -1,0 +1,102 @@
+{
+	Tools = ordered() {
+		MovieMaker_TwoLineFadeInandOut = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Title", },
+				Input2 = InstanceInput { SourceOp = "Txt2", Source = "StyledText", Name = "Line 2 Text", },
+				Input3 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input4 = InstanceInput { SourceOp = "Txt1", Source = "Style", },
+				Input5 = InstanceInput { SourceOp = "Txt1", Source = "Red1", Name = "Text Color", ControlGroup = 1, Default = 1, },
+				Input6 = InstanceInput { SourceOp = "Txt1", Source = "Green1", ControlGroup = 1, Default = 1, },
+				Input7 = InstanceInput { SourceOp = "Txt1", Source = "Blue1", ControlGroup = 1, Default = 1, },
+				Input8 = InstanceInput { SourceOp = "BG", Source = "TopLeftRed", Name = "Background Color", ControlGroup = 2, Default = 0.0627, },
+				Input9 = InstanceInput { SourceOp = "BG", Source = "TopLeftGreen", ControlGroup = 2, Default = 0.251, },
+				Input10 = InstanceInput { SourceOp = "BG", Source = "TopLeftBlue", ControlGroup = 2, Default = 0.502, },
+				Input11 = InstanceInput { SourceOp = "BG", Source = "TopLeftAlpha", Name = "Background Opacity", Default = 1, },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "Merge2", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				BG = Background {
+					Inputs = {
+						TopLeftRed = Input { Value = 0.0627, },
+						TopLeftGreen = Input { Value = 0.251, },
+						TopLeftBlue = Input { Value = 0.502, },
+						TopLeftAlpha = Input { Value = 1, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Microsoft", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Size = Input { Expression = "0.1541*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.501)", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+					},
+				},
+				XF1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.501)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+0+(0)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)+(0), 0.5-(0))", },
+						Input = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "BG", Source = "Output", },
+						Foreground = Input { SourceOp = "XF1", Source = "Output", },
+						Blend = Input { Expression = "(iif(((time/comp.RenderEnd)*116.0)<2, 0, iif(((time/comp.RenderEnd)*116.0)<6, 0+(0.21)*(((time/comp.RenderEnd)*116.0)-2)/4, iif(((time/comp.RenderEnd)*116.0)<10, 0.21+(0.16)*(((time/comp.RenderEnd)*116.0)-6)/4, iif(((time/comp.RenderEnd)*116.0)<16, 0.37+(0.20999999999999996)*(((time/comp.RenderEnd)*116.0)-10)/6, iif(((time/comp.RenderEnd)*116.0)<22, 0.58+(0.24)*(((time/comp.RenderEnd)*116.0)-16)/6, iif(((time/comp.RenderEnd)*116.0)<30, 0.82+(0.18000000000000005)*(((time/comp.RenderEnd)*116.0)-22)/8, 1)))))))*(iif(((time/comp.RenderEnd)*116.0)<88, 1, iif(((time/comp.RenderEnd)*116.0)<92, 1+(-0.08999999999999997)*(((time/comp.RenderEnd)*116.0)-88)/4, iif(((time/comp.RenderEnd)*116.0)<96, 0.91+(-0.13)*(((time/comp.RenderEnd)*116.0)-92)/4, iif(((time/comp.RenderEnd)*116.0)<100, 0.78+(-0.15000000000000002)*(((time/comp.RenderEnd)*116.0)-96)/4, iif(((time/comp.RenderEnd)*116.0)<104, 0.63+(-0.13)*(((time/comp.RenderEnd)*116.0)-100)/4, iif(((time/comp.RenderEnd)*116.0)<108, 0.5+(-0.15000000000000002)*(((time/comp.RenderEnd)*116.0)-104)/4, iif(((time/comp.RenderEnd)*116.0)<112, 0.35+(-0.14999999999999997)*(((time/comp.RenderEnd)*116.0)-108)/4, iif(((time/comp.RenderEnd)*116.0)<116, 0.2+(-0.2)*(((time/comp.RenderEnd)*116.0)-112)/4, 0)))))))))", },
+					},
+				},
+				Txt2 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows Movie Maker", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Size = Input { Expression = "0.09014849999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.357)", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XF2 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.357)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+0+(0)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)+(0), 0.5-(0))", },
+						Input = Input { SourceOp = "Txt2", Source = "Output", },
+					},
+				},
+				Merge2 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "Merge1", Source = "Output", },
+						Foreground = Input { SourceOp = "XF2", Source = "Output", },
+						Blend = Input { Expression = "(iif(((time/comp.RenderEnd)*116.0)<16, 0, iif(((time/comp.RenderEnd)*116.0)<20, 0+(0.21)*(((time/comp.RenderEnd)*116.0)-16)/4, iif(((time/comp.RenderEnd)*116.0)<24, 0.21+(0.16)*(((time/comp.RenderEnd)*116.0)-20)/4, iif(((time/comp.RenderEnd)*116.0)<30, 0.37+(0.20999999999999996)*(((time/comp.RenderEnd)*116.0)-24)/6, iif(((time/comp.RenderEnd)*116.0)<36, 0.58+(0.24)*(((time/comp.RenderEnd)*116.0)-30)/6, iif(((time/comp.RenderEnd)*116.0)<44, 0.82+(0.18000000000000005)*(((time/comp.RenderEnd)*116.0)-36)/8, 1)))))))*(iif(((time/comp.RenderEnd)*116.0)<88, 1, iif(((time/comp.RenderEnd)*116.0)<92, 1+(-0.08999999999999997)*(((time/comp.RenderEnd)*116.0)-88)/4, iif(((time/comp.RenderEnd)*116.0)<96, 0.91+(-0.13)*(((time/comp.RenderEnd)*116.0)-92)/4, iif(((time/comp.RenderEnd)*116.0)<100, 0.78+(-0.15000000000000002)*(((time/comp.RenderEnd)*116.0)-96)/4, iif(((time/comp.RenderEnd)*116.0)<104, 0.63+(-0.13)*(((time/comp.RenderEnd)*116.0)-100)/4, iif(((time/comp.RenderEnd)*116.0)<108, 0.5+(-0.15000000000000002)*(((time/comp.RenderEnd)*116.0)-104)/4, iif(((time/comp.RenderEnd)*116.0)<112, 0.35+(-0.14999999999999997)*(((time/comp.RenderEnd)*116.0)-108)/4, iif(((time/comp.RenderEnd)*116.0)<116, 0.2+(-0.2)*(((time/comp.RenderEnd)*116.0)-112)/4, 0)))))))))", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_TwoLineFadeInandOut"
+}

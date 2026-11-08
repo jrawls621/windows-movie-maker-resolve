@@ -1,0 +1,180 @@
+{
+	Tools = ordered() {
+		MovieMaker_TwoLineNewspaper = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput { SourceOp = "Vid", Source = "Input", },
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input3 = InstanceInput { SourceOp = "Txt2", Source = "StyledText", Name = "Line 2 Text", },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "M1", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Black = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0.08, },
+						TopLeftGreen = Input { Value = 0.08, },
+						TopLeftBlue = Input { Value = 0.08, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				Paper = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0.9, },
+						TopLeftGreen = Input { Value = 0.9, },
+						TopLeftBlue = Input { Value = 0.88, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				PMsk = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.5, 0.48)", },
+						Width = Input { Expression = "0.86", },
+						Height = Input { Expression = "0.92", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				Clear = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0, },
+						TopLeftGreen = Input { Value = 0, },
+						TopLeftBlue = Input { Value = 0, },
+						TopLeftAlpha = Input { Value = 0, },
+					},
+				},
+				P1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "Clear", Source = "Output", },
+						Foreground = Input { SourceOp = "Paper", Source = "Output", },
+						EffectMask = Input { SourceOp = "PMsk", Source = "Mask", },
+					},
+				},
+				Col = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0.62, },
+						TopLeftGreen = Input { Value = 0.62, },
+						TopLeftBlue = Input { Value = 0.6, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				C1 = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.22, 0.32)", },
+						Width = Input { Expression = "0.24", },
+						Height = Input { Expression = "0.5", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				P2 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "P1", Source = "Output", },
+						Foreground = Input { SourceOp = "Col", Source = "Output", },
+						EffectMask = Input { SourceOp = "C1", Source = "Mask", },
+					},
+				},
+				C2 = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.8, 0.32)", },
+						Width = Input { Expression = "0.18", },
+						Height = Input { Expression = "0.5", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				P3 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "P2", Source = "Output", },
+						Foreground = Input { SourceOp = "Col", Source = "Output", },
+						EffectMask = Input { SourceOp = "C2", Source = "Mask", },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Microsoft", },
+						Size = Input { Expression = "0.13868999999999998*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.847)", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Red1 = Input { Value = 0.25, },
+						Green1 = Input { Value = 0.25, },
+						Blue1 = Input { Value = 0.25, },
+					},
+				},
+				P4 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "P3", Source = "Output", },
+						Foreground = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				Txt2 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows Movie Maker", },
+						Size = Input { Expression = "0.084755*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.707)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				P5 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "P4", Source = "Output", },
+						Foreground = Input { SourceOp = "Txt2", Source = "Output", },
+					},
+				},
+				Vid = Transform {
+					Inputs = {
+						Size = Input { Expression = "iif(((time/comp.RenderEnd)*116.0)<0, 0.36, iif(((time/comp.RenderEnd)*116.0)<100, 0.36+(0.0)*(((time/comp.RenderEnd)*116.0)-(0))/(100), iif(((time/comp.RenderEnd)*116.0)<116, 0.36+(0.64)*(((time/comp.RenderEnd)*116.0)-(100))/(16), 1)))", },
+						Center = Input { Expression = "Point(iif(((time/comp.RenderEnd)*116.0)<0, 0.52, iif(((time/comp.RenderEnd)*116.0)<100, 0.52+(0.0)*(((time/comp.RenderEnd)*116.0)-(0))/(100), iif(((time/comp.RenderEnd)*116.0)<116, 0.52+(-0.020000000000000018)*(((time/comp.RenderEnd)*116.0)-(100))/(16), 0.5))), iif(((time/comp.RenderEnd)*116.0)<0, 0.41, iif(((time/comp.RenderEnd)*116.0)<100, 0.41+(0.0)*(((time/comp.RenderEnd)*116.0)-(0))/(100), iif(((time/comp.RenderEnd)*116.0)<116, 0.41+(0.09000000000000002)*(((time/comp.RenderEnd)*116.0)-(100))/(16), 0.5))))", },
+					},
+				},
+				P6 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "P5", Source = "Output", },
+						Foreground = Input { SourceOp = "Vid", Source = "Output", },
+					},
+				},
+				Spin = Transform {
+					Inputs = {
+						Size = Input { Expression = "iif(((time/comp.RenderEnd)*116.0)<0, 0.05, iif(((time/comp.RenderEnd)*116.0)<30, 0.05+(0.8999999999999999)*(((time/comp.RenderEnd)*116.0)-(0))/(30), iif(((time/comp.RenderEnd)*116.0)<40, 0.95+(0.050000000000000044)*(((time/comp.RenderEnd)*116.0)-(30))/(10), 1)))", },
+						Angle = Input { Expression = "iif(((time/comp.RenderEnd)*116.0)<0, 720, iif(((time/comp.RenderEnd)*116.0)<30, 720+(-680)*(((time/comp.RenderEnd)*116.0)-(0))/(30), iif(((time/comp.RenderEnd)*116.0)<40, 40+(-40)*(((time/comp.RenderEnd)*116.0)-(30))/(10), 0)))", },
+						Input = Input { SourceOp = "P6", Source = "Output", },
+					},
+				},
+				M1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "Black", Source = "Output", },
+						Foreground = Input { SourceOp = "Spin", Source = "Output", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_TwoLineNewspaper"
+}

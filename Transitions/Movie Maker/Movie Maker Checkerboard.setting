@@ -1,0 +1,61 @@
+{
+	Tools = ordered() {
+		MovieMaker_Checkerboard = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput { SourceOp = "WMMWipe", Source = "Image1", },
+				MainInput2 = InstanceInput { SourceOp = "WMMWipe", Source = "Image2", },
+				Input1 = InstanceInput { SourceOp = "WMMWipe", Source = "NumberIn2", Name = "Edge Softness", Default = 0.0, MinScale = 0, MaxScale = 3, },
+				Input2 = InstanceInput { SourceOp = "WMMWipe", Source = "NumberIn3", Name = "Squares Across", Default = 12, MinScale = 1, MaxScale = 40, },
+				Input3 = InstanceInput { SourceOp = "WMMWipe", Source = "NumberIn4", Name = "Squares Down", Default = 10, MinScale = 1, MaxScale = 40, },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "WMMWipe", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				WMMWipe = Custom {
+					CtrlWZoom = false,
+					Inputs = {
+						NumberIn1 = Input { SourceOp = "WMMProgress", Source = "Value", },
+						NumberIn2 = Input { Value = 0.0, },
+						NumberIn3 = Input { Value = 12, },
+						NumberIn4 = Input { Value = 10, },
+						Setup1 = Input { Value = "w/h", },
+						Setup2 = Input { Value = "2", },
+						Setup3 = Input { Value = "max(0.050000*n2, 0.000001)", },
+						Setup4 = Input { Value = "0 + (s2-(0))*(0.00000+(1.00000)*n1)", },
+						Intermediate1 = Input { Value = "floor((1-y)*n4)", },
+						Intermediate2 = Input { Value = "x*n3+(i1-2*floor(i1/2))", },
+						Intermediate3 = Input { Value = "i2-2*floor(i2/2)", },
+						Intermediate4 = Input { Value = "if(n1<=0, 0, if(n1>=1, 1, min(max((s4-i3)/s3+0.5, 0), 1)))", },
+						RedExpression = Input { Value = "r1+(r2-r1)*i4", },
+						GreenExpression = Input { Value = "g1+(g2-g1)*i4", },
+						BlueExpression = Input { Value = "b1+(b2-b1)*i4", },
+						AlphaExpression = Input { Value = "a1+(a2-a1)*i4", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 0 } },
+				},
+				WMMProgress = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Custom" }, },
+						Lookup = Input { SourceOp = "WMMProgressLookup", Source = "Value", },
+					},
+				},
+				WMMProgressLookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_Checkerboard"
+}

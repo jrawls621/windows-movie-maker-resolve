@@ -1,0 +1,68 @@
+{
+	Tools = ordered() {
+		MovieMaker_Basic = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input3 = InstanceInput { SourceOp = "Txt1", Source = "Style", },
+				Input4 = InstanceInput { SourceOp = "Txt1", Source = "Red1", Name = "Text Color", ControlGroup = 1, Default = 1, },
+				Input5 = InstanceInput { SourceOp = "Txt1", Source = "Green1", ControlGroup = 1, Default = 1, },
+				Input6 = InstanceInput { SourceOp = "Txt1", Source = "Blue1", ControlGroup = 1, Default = 1, },
+				Input7 = InstanceInput { SourceOp = "BG", Source = "TopLeftRed", Name = "Background Color", ControlGroup = 2, Default = 0.0627, },
+				Input8 = InstanceInput { SourceOp = "BG", Source = "TopLeftGreen", ControlGroup = 2, Default = 0.251, },
+				Input9 = InstanceInput { SourceOp = "BG", Source = "TopLeftBlue", ControlGroup = 2, Default = 0.502, },
+				Input10 = InstanceInput { SourceOp = "BG", Source = "TopLeftAlpha", Name = "Background Opacity", Default = 1, },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "Merge1", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				BG = Background {
+					Inputs = {
+						TopLeftRed = Input { Value = 0.0627, },
+						TopLeftGreen = Input { Value = 0.251, },
+						TopLeftBlue = Input { Value = 0.502, },
+						TopLeftAlpha = Input { Value = 1, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows\nMovie Maker", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Size = Input { Expression = "0.1541*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.508)", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+					},
+				},
+				XF1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.508)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+0+(0)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)+(0), 0.5-(0))", },
+						Input = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "BG", Source = "Output", },
+						Foreground = Input { SourceOp = "XF1", Source = "Output", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_Basic"
+}

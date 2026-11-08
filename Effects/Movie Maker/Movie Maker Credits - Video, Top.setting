@@ -1,0 +1,191 @@
+{
+	Tools = ordered() {
+		MovieMaker_CreditsVideoTop = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput { SourceOp = "Vid", Source = "Input", },
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input3 = InstanceInput { SourceOp = "Rcol", Source = "StyledText", Name = "Roles (one per line)", },
+				Input4 = InstanceInput { SourceOp = "Ncol", Source = "StyledText", Name = "Names (one per line)", },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "M5", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Vid = Transform {
+					Inputs = {
+						Center = Input { Value = { 0.5, 0.75 }, },
+					},
+				},
+				Grad = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Type = Input { Value = FuID { "Corner" }, },
+						TopLeftRed = Input { Value = 0.06, },
+						TopLeftGreen = Input { Value = 0.25, },
+						TopLeftBlue = Input { Value = 0.5, },
+						TopLeftAlpha = Input { Value = 1, },
+						TopRightRed = Input { Value = 0.23, },
+						TopRightGreen = Input { Value = 0.35, },
+						TopRightBlue = Input { Value = 0.76, },
+						TopRightAlpha = Input { Value = 1, },
+						BottomLeftRed = Input { Value = 0.25, },
+						BottomLeftGreen = Input { Value = 0.3, },
+						BottomLeftBlue = Input { Value = 0.7, },
+						BottomLeftAlpha = Input { Value = 1, },
+						BottomRightRed = Input { Value = 0.37, },
+						BottomRightGreen = Input { Value = 0.4, },
+						BottomRightBlue = Input { Value = 0.94, },
+						BottomRightAlpha = Input { Value = 1, },
+					},
+				},
+				GMsk = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.5, 0.25)", },
+						Width = Input { Expression = "2", },
+						Height = Input { Expression = "0.5", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				M1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "Vid", Source = "Output", },
+						Foreground = Input { SourceOp = "Grad", Source = "Output", },
+						EffectMask = Input { SourceOp = "GMsk", Source = "Mask", },
+					},
+				},
+				Bar = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 1.0, },
+						TopLeftGreen = Input { Value = 0.145, },
+						TopLeftBlue = Input { Value = 0.047, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				BarMsk = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.5, 0.85)", },
+						Width = Input { Expression = "1.0", },
+						Height = Input { Expression = "0.1", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				M2 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "M1", Source = "Output", },
+						Foreground = Input { SourceOp = "Bar", Source = "Output", },
+						EffectMask = Input { SourceOp = "BarMsk", Source = "Mask", },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows Movie Maker", },
+						Size = Input { Expression = "0.07705*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.858)", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+					},
+				},
+				M3 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "M2", Source = "Output", },
+						Foreground = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				Rcol = TextPlus {
+					Inputs = {
+						LineSpacing = Input { Value = 3.95, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Vocals\nVocals and Guitar\nGuitar\nBass\nDrums\nShopkeeper", },
+						Size = Input { Expression = "0.06164*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, -0.243)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				Ncol = TextPlus {
+					Inputs = {
+						LineSpacing = Input { Value = 2.43, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Scott Anderson\nJames Black\nRick Jackett\nSean Anderson\nRich Beddoe\nMorshu", },
+						Size = Input { Expression = "0.10016499999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, -0.348)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XR = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.5)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5, 0.5-((-0.0215*((time/comp.RenderEnd)*116-30))))", },
+						Input = Input { SourceOp = "Rcol", Source = "Output", },
+					},
+				},
+				XN = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.5)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5, 0.5-((-0.0215*((time/comp.RenderEnd)*116-30))))", },
+						Input = Input { SourceOp = "Ncol", Source = "Output", },
+					},
+				},
+				ColMsk = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.5, 0.25)", },
+						Width = Input { Expression = "2", },
+						Height = Input { Expression = "0.5", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				M4 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "M3", Source = "Output", },
+						Foreground = Input { SourceOp = "XR", Source = "Output", },
+						EffectMask = Input { SourceOp = "ColMsk", Source = "Mask", },
+					},
+				},
+				M5 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "M4", Source = "Output", },
+						Foreground = Input { SourceOp = "XN", Source = "Output", },
+						EffectMask = Input { SourceOp = "ColMsk", Source = "Mask", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_CreditsVideoTop"
+}

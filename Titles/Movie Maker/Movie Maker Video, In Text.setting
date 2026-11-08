@@ -1,0 +1,85 @@
+{
+	Tools = ordered() {
+		MovieMaker_VideoInText = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input3 = InstanceInput { SourceOp = "Txt1", Source = "Style", },
+				Input4 = InstanceInput { SourceOp = "Txt1", Source = "Red1", Name = "Text Color", ControlGroup = 1, Default = 1, },
+				Input5 = InstanceInput { SourceOp = "Txt1", Source = "Green1", ControlGroup = 1, Default = 1, },
+				Input6 = InstanceInput { SourceOp = "Txt1", Source = "Blue1", ControlGroup = 1, Default = 1, },
+				Input7 = InstanceInput { SourceOp = "BG", Source = "TopLeftRed", Name = "Background Color", ControlGroup = 2, Default = 0.0627, },
+				Input8 = InstanceInput { SourceOp = "BG", Source = "TopLeftGreen", ControlGroup = 2, Default = 0.251, },
+				Input9 = InstanceInput { SourceOp = "BG", Source = "TopLeftBlue", ControlGroup = 2, Default = 0.502, },
+				Input10 = InstanceInput { SourceOp = "BG", Source = "TopLeftAlpha", Name = "Background Opacity", Default = 1, },
+				Input11 = InstanceInput { SourceOp = "White", Source = "TopLeftRed", Name = "Panel Color", ControlGroup = 3, Default = 1, },
+				Input12 = InstanceInput { SourceOp = "White", Source = "TopLeftGreen", ControlGroup = 3, Default = 1, },
+				Input13 = InstanceInput { SourceOp = "White", Source = "TopLeftBlue", ControlGroup = 3, Default = 1, },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "Merge1", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				BG = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0.0627, },
+						TopLeftGreen = Input { Value = 0.251, },
+						TopLeftBlue = Input { Value = 0.502, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows\nMovie Maker", },
+						Size = Input { Expression = "0.1541*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.508)", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+					},
+				},
+				XF1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.508)", },
+						XSize = Input { Expression = "1.032*(iif(((time/comp.RenderEnd)*116.0)<1, 6.1, iif(((time/comp.RenderEnd)*116.0)<28, 6.1+(-5.1)*(((time/comp.RenderEnd)*116.0)-1)/27, 1)))", },
+						YSize = Input { Expression = "iif(((time/comp.RenderEnd)*116.0)<1, 6.1, iif(((time/comp.RenderEnd)*116.0)<28, 6.1+(-5.1)*(((time/comp.RenderEnd)*116.0)-1)/27, 1))", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5, 0.5)", },
+						Input = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				White = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 1, },
+						TopLeftGreen = Input { Value = 1, },
+						TopLeftBlue = Input { Value = 1, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "BG", Source = "Output", },
+						Foreground = Input { SourceOp = "White", Source = "Output", },
+						Blend = Input { Expression = "(iif(((time/comp.RenderEnd)*116.0)<1, 0, iif(((time/comp.RenderEnd)*116.0)<4, 0+(0.24)*(((time/comp.RenderEnd)*116.0)-1)/3, iif(((time/comp.RenderEnd)*116.0)<8, 0.24+(0.09000000000000002)*(((time/comp.RenderEnd)*116.0)-4)/4, iif(((time/comp.RenderEnd)*116.0)<12, 0.33+(0.14999999999999997)*(((time/comp.RenderEnd)*116.0)-8)/4, iif(((time/comp.RenderEnd)*116.0)<16, 0.48+(0.16000000000000003)*(((time/comp.RenderEnd)*116.0)-12)/4, iif(((time/comp.RenderEnd)*116.0)<20, 0.64+(0.12)*(((time/comp.RenderEnd)*116.0)-16)/4, iif(((time/comp.RenderEnd)*116.0)<24, 0.76+(0.09999999999999998)*(((time/comp.RenderEnd)*116.0)-20)/4, iif(((time/comp.RenderEnd)*116.0)<28, 0.86+(0.08999999999999997)*(((time/comp.RenderEnd)*116.0)-24)/4, iif(((time/comp.RenderEnd)*116.0)<30, 0.95+(0.050000000000000044)*(((time/comp.RenderEnd)*116.0)-28)/2, 1))))))))))*(iif(((time/comp.RenderEnd)*116.0)<88, 1, iif(((time/comp.RenderEnd)*116.0)<92, 1+(-0.08999999999999997)*(((time/comp.RenderEnd)*116.0)-88)/4, iif(((time/comp.RenderEnd)*116.0)<96, 0.91+(-0.13)*(((time/comp.RenderEnd)*116.0)-92)/4, iif(((time/comp.RenderEnd)*116.0)<100, 0.78+(-0.15000000000000002)*(((time/comp.RenderEnd)*116.0)-96)/4, iif(((time/comp.RenderEnd)*116.0)<104, 0.63+(-0.13)*(((time/comp.RenderEnd)*116.0)-100)/4, iif(((time/comp.RenderEnd)*116.0)<108, 0.5+(-0.15000000000000002)*(((time/comp.RenderEnd)*116.0)-104)/4, iif(((time/comp.RenderEnd)*116.0)<112, 0.35+(-0.14999999999999997)*(((time/comp.RenderEnd)*116.0)-108)/4, iif(((time/comp.RenderEnd)*116.0)<116, 0.2+(-0.2)*(((time/comp.RenderEnd)*116.0)-112)/4, 0)))))))))", },
+						EffectMask = Input { SourceOp = "XF1", Source = "Output", },
+						ApplyMaskInverted = Input { Value = 1, },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_VideoInText"
+}

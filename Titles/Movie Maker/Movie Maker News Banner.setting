@@ -1,0 +1,89 @@
+{
+	Tools = ordered() {
+		MovieMaker_NewsBanner = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input3 = InstanceInput { SourceOp = "Txt1", Source = "Style", },
+				Input4 = InstanceInput { SourceOp = "Txt1", Source = "Red1", Name = "Text Color", ControlGroup = 1, Default = 1, },
+				Input5 = InstanceInput { SourceOp = "Txt1", Source = "Green1", ControlGroup = 1, Default = 1, },
+				Input6 = InstanceInput { SourceOp = "Txt1", Source = "Blue1", ControlGroup = 1, Default = 1, },
+				Input7 = InstanceInput { SourceOp = "BG", Source = "TopLeftRed", Name = "Background Color", ControlGroup = 2, Default = 0.0627, },
+				Input8 = InstanceInput { SourceOp = "BG", Source = "TopLeftGreen", ControlGroup = 2, Default = 0.251, },
+				Input9 = InstanceInput { SourceOp = "BG", Source = "TopLeftBlue", ControlGroup = 2, Default = 0.502, },
+				Input10 = InstanceInput { SourceOp = "BG", Source = "TopLeftAlpha", Name = "Background Opacity", Default = 1, },
+				Input11 = InstanceInput { SourceOp = "Band", Source = "TopLeftRed", Name = "Banner Color", ControlGroup = 3, Default = 1.0, },
+				Input12 = InstanceInput { SourceOp = "Band", Source = "TopLeftGreen", ControlGroup = 3, Default = 0.145, },
+				Input13 = InstanceInput { SourceOp = "Band", Source = "TopLeftBlue", ControlGroup = 3, Default = 0.047, },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "Merge1", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				BG = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0.0627, },
+						TopLeftGreen = Input { Value = 0.251, },
+						TopLeftBlue = Input { Value = 0.502, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				Band = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 1.0, },
+						TopLeftGreen = Input { Value = 0.145, },
+						TopLeftBlue = Input { Value = 0.047, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				BandMsk = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.5, 0.251)", },
+						Width = Input { Expression = "2", },
+						Height = Input { Expression = "0.144", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows Movie Maker", },
+						Size = Input { Expression = "0.09446329999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point((1.018-0.01556*((time/comp.RenderEnd)*116.0)), 0.258)", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+						HorizontalLeftCenterRight = Input { Value = -1, },
+					},
+				},
+				MergeB = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "BG", Source = "Output", },
+						Foreground = Input { SourceOp = "Band", Source = "Output", },
+						EffectMask = Input { SourceOp = "BandMsk", Source = "Mask", },
+					},
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MergeB", Source = "Output", },
+						Foreground = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_NewsBanner"
+}

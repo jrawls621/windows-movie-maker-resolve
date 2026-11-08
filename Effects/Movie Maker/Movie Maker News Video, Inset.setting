@@ -1,0 +1,105 @@
+{
+	Tools = ordered() {
+		MovieMaker_NewsVideoInset = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput { SourceOp = "Vid", Source = "Input", },
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "M3", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Grad = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Type = Input { Value = FuID { "Corner" }, },
+						TopLeftRed = Input { Value = 0.06, },
+						TopLeftGreen = Input { Value = 0.07, },
+						TopLeftBlue = Input { Value = 0.37, },
+						TopLeftAlpha = Input { Value = 1, },
+						TopRightRed = Input { Value = 0.3, },
+						TopRightGreen = Input { Value = 0.34, },
+						TopRightBlue = Input { Value = 0.84, },
+						TopRightAlpha = Input { Value = 1, },
+						BottomLeftRed = Input { Value = 0.2, },
+						BottomLeftGreen = Input { Value = 0.24, },
+						BottomLeftBlue = Input { Value = 0.6, },
+						BottomLeftAlpha = Input { Value = 1, },
+						BottomRightRed = Input { Value = 0.37, },
+						BottomRightGreen = Input { Value = 0.4, },
+						BottomRightBlue = Input { Value = 0.93, },
+						BottomRightAlpha = Input { Value = 1, },
+					},
+				},
+				Vid = Transform {
+					Inputs = {
+						Size = Input { Expression = "iif(((time/comp.RenderEnd)*116.0)<0, 1, iif(((time/comp.RenderEnd)*116.0)<12, 1+(-0.42000000000000004)*(((time/comp.RenderEnd)*116.0)-(0))/(12), iif(((time/comp.RenderEnd)*116.0)<104, 0.58+(0.0)*(((time/comp.RenderEnd)*116.0)-(12))/(92), iif(((time/comp.RenderEnd)*116.0)<116, 0.58+(0.42000000000000004)*(((time/comp.RenderEnd)*116.0)-(104))/(12), 1))))", },
+						Center = Input { Expression = "Point(iif(((time/comp.RenderEnd)*116.0)<0, 0.5, iif(((time/comp.RenderEnd)*116.0)<12, 0.5+(-0.14200000000000002)*(((time/comp.RenderEnd)*116.0)-(0))/(12), iif(((time/comp.RenderEnd)*116.0)<104, 0.358+(0.0)*(((time/comp.RenderEnd)*116.0)-(12))/(92), iif(((time/comp.RenderEnd)*116.0)<116, 0.358+(0.14200000000000002)*(((time/comp.RenderEnd)*116.0)-(104))/(12), 0.5)))), iif(((time/comp.RenderEnd)*116.0)<0, 0.5, iif(((time/comp.RenderEnd)*116.0)<12, 0.5+(0.126)*(((time/comp.RenderEnd)*116.0)-(0))/(12), iif(((time/comp.RenderEnd)*116.0)<104, 0.626+(0.0)*(((time/comp.RenderEnd)*116.0)-(12))/(92), iif(((time/comp.RenderEnd)*116.0)<116, 0.626+(-0.126)*(((time/comp.RenderEnd)*116.0)-(104))/(12), 0.5)))))", },
+					},
+				},
+				M1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "Grad", Source = "Output", },
+						Foreground = Input { SourceOp = "Vid", Source = "Output", },
+					},
+				},
+				Bar = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 1.0, },
+						TopLeftGreen = Input { Value = 0.145, },
+						TopLeftBlue = Input { Value = 0.047, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				BarMsk = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(0.42, 0.19999999999999996)", },
+						Width = Input { Expression = "0.84", },
+						Height = Input { Expression = "0.10999999999999999", },
+						SoftEdge = Input { Value = 0.0, },
+					},
+				},
+				M2 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "M1", Source = "Output", },
+						Foreground = Input { SourceOp = "Bar", Source = "Output", },
+						Blend = Input { Expression = "(iif(((time/comp.RenderEnd)*116.0)<6, 0, iif(((time/comp.RenderEnd)*116.0)<14, 0+(1)*(((time/comp.RenderEnd)*116.0)-(6))/(8), 1)))*(iif(((time/comp.RenderEnd)*116.0)<100, 1, iif(((time/comp.RenderEnd)*116.0)<108, 1+(-1)*(((time/comp.RenderEnd)*116.0)-(100))/(8), 0)))", },
+						EffectMask = Input { SourceOp = "BarMsk", Source = "Mask", },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows Movie Maker", },
+						Size = Input { Expression = "0.081673*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.42, 0.208)", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+					},
+				},
+				M3 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "M2", Source = "Output", },
+						Foreground = Input { SourceOp = "Txt1", Source = "Output", },
+						Blend = Input { Expression = "(iif(((time/comp.RenderEnd)*116.0)<6, 0, iif(((time/comp.RenderEnd)*116.0)<14, 0+(1)*(((time/comp.RenderEnd)*116.0)-(6))/(8), 1)))*(iif(((time/comp.RenderEnd)*116.0)<100, 1, iif(((time/comp.RenderEnd)*116.0)<108, 1+(-1)*(((time/comp.RenderEnd)*116.0)-(100))/(8), 0)))", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_NewsVideoInset"
+}

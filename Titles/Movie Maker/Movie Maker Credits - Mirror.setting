@@ -1,0 +1,699 @@
+{
+	Tools = ordered() {
+		MovieMaker_CreditsMirror = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input3 = InstanceInput { SourceOp = "Txt1", Source = "Style", },
+				Input4 = InstanceInput { SourceOp = "Txt1", Source = "Red1", Name = "Text Color", ControlGroup = 1, Default = 1, },
+				Input5 = InstanceInput { SourceOp = "Txt1", Source = "Green1", ControlGroup = 1, Default = 1, },
+				Input6 = InstanceInput { SourceOp = "Txt1", Source = "Blue1", ControlGroup = 1, Default = 1, },
+				Input7 = InstanceInput { SourceOp = "BG", Source = "TopLeftRed", Name = "Background Color", ControlGroup = 2, Default = 0.0627, },
+				Input8 = InstanceInput { SourceOp = "BG", Source = "TopLeftGreen", ControlGroup = 2, Default = 0.251, },
+				Input9 = InstanceInput { SourceOp = "BG", Source = "TopLeftBlue", ControlGroup = 2, Default = 0.502, },
+				Input10 = InstanceInput { SourceOp = "BG", Source = "TopLeftAlpha", Name = "Background Opacity", Default = 1, },
+				Input20 = InstanceInput { SourceOp = "R1", Source = "StyledText", Name = "Role 1", },
+				Input21 = InstanceInput { SourceOp = "N1", Source = "StyledText", Name = "Name 1", },
+				Input22 = InstanceInput { SourceOp = "R2", Source = "StyledText", Name = "Role 2", },
+				Input23 = InstanceInput { SourceOp = "N2", Source = "StyledText", Name = "Name 2", },
+				Input24 = InstanceInput { SourceOp = "R3", Source = "StyledText", Name = "Role 3", },
+				Input25 = InstanceInput { SourceOp = "N3", Source = "StyledText", Name = "Name 3", },
+				Input26 = InstanceInput { SourceOp = "R4", Source = "StyledText", Name = "Role 4", },
+				Input27 = InstanceInput { SourceOp = "N4", Source = "StyledText", Name = "Name 4", },
+				Input28 = InstanceInput { SourceOp = "R5", Source = "StyledText", Name = "Role 5", },
+				Input29 = InstanceInput { SourceOp = "N5", Source = "StyledText", Name = "Name 5", },
+				Input30 = InstanceInput { SourceOp = "R6", Source = "StyledText", Name = "Role 6", },
+				Input31 = InstanceInput { SourceOp = "N6", Source = "StyledText", Name = "Name 6", },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "MB_N6", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				BG = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0.0627, },
+						TopLeftGreen = Input { Value = 0.251, },
+						TopLeftBlue = Input { Value = 0.502, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows\nMovie Maker", },
+						Size = Input { Expression = "0.1541*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.508)", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+					},
+				},
+				XA_Txt1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.508)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-0)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-0)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-0)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-0)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-0)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-0)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-0)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-0)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-0)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-0)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-0)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-0)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-0)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-0)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-0)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-0)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-0)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-0)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-0)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-0)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-0)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-0)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-0)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				XB_Txt1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.508)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-0)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-0)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-0)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-0)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-0)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-0)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-0)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-0)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-0)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-0)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-0)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-0)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-0)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-0)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-0)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-0)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-0)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-0)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-0)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-0)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-0)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-0)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-0)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				MA_Txt1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "BG", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_Txt1", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-0)*116)<8, 0, iif((((time/comp.RenderEnd)*7-0)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-0)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-0)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-0)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-0)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-0)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-0)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-0)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-0)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-0)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-0)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-0)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-0)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-0)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-0)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-0)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-0)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-0)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-0)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-0)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-0)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_Txt1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_Txt1", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_Txt1", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-0)*116)<8, 0, iif((((time/comp.RenderEnd)*7-0)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-0)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-0)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-0)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-0)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-0)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-0)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-0)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-0)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-0)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-0)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-0)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-0)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-0)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-0)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-0)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-0)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-0)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-0)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-0)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-0)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-0)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				R1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Vocals", },
+						Size = Input { Expression = "0.06164*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.601)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_R1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-1)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-1)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-1)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-1)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-1)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-1)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-1)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-1)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-1)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-1)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-1)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-1)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-1)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-1)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-1)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-1)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R1", Source = "Output", },
+					},
+				},
+				XB_R1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-1)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-1)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-1)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-1)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-1)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-1)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-1)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-1)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-1)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-1)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-1)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-1)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-1)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-1)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-1)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-1)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R1", Source = "Output", },
+					},
+				},
+				MA_R1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_Txt1", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_R1", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-1)*116)<8, 0, iif((((time/comp.RenderEnd)*7-1)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-1)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-1)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-1)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-1)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-1)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-1)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-1)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-1)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-1)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-1)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-1)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-1)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-1)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-1)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-1)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-1)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-1)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-1)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-1)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-1)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_R1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_R1", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_R1", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-1)*116)<8, 0, iif((((time/comp.RenderEnd)*7-1)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-1)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-1)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-1)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-1)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-1)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-1)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-1)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-1)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-1)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-1)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-1)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-1)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-1)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-1)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-1)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-1)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-1)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-1)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-1)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-1)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				N1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Scott Anderson", },
+						Size = Input { Expression = "0.10016499999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.4945)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_N1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-1)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-1)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-1)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-1)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-1)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-1)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-1)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-1)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-1)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-1)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-1)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-1)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-1)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-1)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-1)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-1)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N1", Source = "Output", },
+					},
+				},
+				XB_N1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-1)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-1)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-1)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-1)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-1)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-1)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-1)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-1)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-1)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-1)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-1)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-1)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-1)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-1)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-1)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-1)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-1)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-1)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N1", Source = "Output", },
+					},
+				},
+				MA_N1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_R1", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_N1", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-1)*116)<8, 0, iif((((time/comp.RenderEnd)*7-1)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-1)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-1)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-1)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-1)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-1)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-1)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-1)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-1)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-1)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-1)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-1)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-1)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-1)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-1)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-1)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-1)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-1)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-1)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-1)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-1)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_N1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_N1", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_N1", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-1)*116)<8, 0, iif((((time/comp.RenderEnd)*7-1)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-1)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-1)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-1)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-1)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-1)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-1)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-1)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-1)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-1)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-1)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-1)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-1)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-1)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-1)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-1)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-1)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-1)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-1)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-1)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-1)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-1)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				R2 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Vocals and Guitar", },
+						Size = Input { Expression = "0.06164*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.601)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_R2 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-2)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-2)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-2)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-2)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-2)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-2)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-2)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-2)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-2)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-2)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-2)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-2)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-2)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-2)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-2)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-2)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R2", Source = "Output", },
+					},
+				},
+				XB_R2 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-2)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-2)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-2)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-2)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-2)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-2)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-2)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-2)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-2)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-2)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-2)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-2)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-2)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-2)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-2)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-2)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R2", Source = "Output", },
+					},
+				},
+				MA_R2 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_N1", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_R2", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-2)*116)<8, 0, iif((((time/comp.RenderEnd)*7-2)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-2)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-2)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-2)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-2)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-2)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-2)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-2)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-2)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-2)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-2)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-2)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-2)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-2)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-2)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-2)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-2)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-2)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-2)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-2)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-2)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_R2 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_R2", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_R2", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-2)*116)<8, 0, iif((((time/comp.RenderEnd)*7-2)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-2)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-2)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-2)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-2)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-2)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-2)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-2)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-2)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-2)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-2)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-2)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-2)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-2)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-2)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-2)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-2)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-2)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-2)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-2)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-2)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				N2 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "James Black", },
+						Size = Input { Expression = "0.10016499999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.4945)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_N2 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-2)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-2)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-2)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-2)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-2)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-2)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-2)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-2)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-2)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-2)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-2)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-2)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-2)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-2)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-2)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-2)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N2", Source = "Output", },
+					},
+				},
+				XB_N2 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-2)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-2)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-2)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-2)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-2)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-2)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-2)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-2)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-2)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-2)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-2)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-2)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-2)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-2)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-2)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-2)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-2)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-2)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N2", Source = "Output", },
+					},
+				},
+				MA_N2 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_R2", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_N2", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-2)*116)<8, 0, iif((((time/comp.RenderEnd)*7-2)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-2)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-2)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-2)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-2)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-2)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-2)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-2)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-2)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-2)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-2)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-2)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-2)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-2)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-2)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-2)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-2)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-2)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-2)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-2)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-2)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_N2 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_N2", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_N2", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-2)*116)<8, 0, iif((((time/comp.RenderEnd)*7-2)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-2)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-2)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-2)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-2)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-2)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-2)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-2)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-2)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-2)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-2)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-2)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-2)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-2)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-2)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-2)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-2)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-2)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-2)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-2)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-2)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-2)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				R3 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Guitar", },
+						Size = Input { Expression = "0.06164*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.601)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_R3 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-3)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-3)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-3)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-3)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-3)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-3)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-3)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-3)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-3)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-3)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-3)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-3)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-3)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-3)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-3)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-3)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R3", Source = "Output", },
+					},
+				},
+				XB_R3 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-3)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-3)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-3)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-3)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-3)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-3)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-3)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-3)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-3)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-3)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-3)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-3)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-3)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-3)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-3)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-3)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R3", Source = "Output", },
+					},
+				},
+				MA_R3 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_N2", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_R3", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-3)*116)<8, 0, iif((((time/comp.RenderEnd)*7-3)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-3)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-3)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-3)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-3)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-3)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-3)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-3)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-3)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-3)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-3)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-3)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-3)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-3)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-3)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-3)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-3)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-3)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-3)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-3)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-3)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_R3 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_R3", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_R3", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-3)*116)<8, 0, iif((((time/comp.RenderEnd)*7-3)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-3)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-3)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-3)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-3)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-3)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-3)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-3)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-3)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-3)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-3)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-3)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-3)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-3)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-3)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-3)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-3)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-3)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-3)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-3)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-3)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				N3 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Rick Jackett", },
+						Size = Input { Expression = "0.10016499999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.4945)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_N3 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-3)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-3)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-3)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-3)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-3)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-3)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-3)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-3)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-3)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-3)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-3)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-3)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-3)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-3)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-3)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-3)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N3", Source = "Output", },
+					},
+				},
+				XB_N3 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-3)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-3)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-3)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-3)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-3)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-3)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-3)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-3)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-3)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-3)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-3)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-3)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-3)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-3)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-3)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-3)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-3)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-3)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N3", Source = "Output", },
+					},
+				},
+				MA_N3 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_R3", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_N3", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-3)*116)<8, 0, iif((((time/comp.RenderEnd)*7-3)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-3)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-3)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-3)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-3)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-3)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-3)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-3)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-3)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-3)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-3)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-3)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-3)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-3)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-3)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-3)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-3)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-3)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-3)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-3)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-3)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_N3 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_N3", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_N3", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-3)*116)<8, 0, iif((((time/comp.RenderEnd)*7-3)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-3)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-3)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-3)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-3)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-3)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-3)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-3)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-3)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-3)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-3)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-3)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-3)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-3)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-3)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-3)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-3)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-3)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-3)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-3)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-3)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-3)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				R4 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Bass", },
+						Size = Input { Expression = "0.06164*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.601)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_R4 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-4)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-4)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-4)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-4)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-4)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-4)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-4)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-4)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-4)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-4)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-4)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-4)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-4)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-4)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-4)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-4)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R4", Source = "Output", },
+					},
+				},
+				XB_R4 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-4)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-4)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-4)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-4)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-4)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-4)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-4)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-4)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-4)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-4)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-4)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-4)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-4)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-4)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-4)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-4)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R4", Source = "Output", },
+					},
+				},
+				MA_R4 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_N3", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_R4", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-4)*116)<8, 0, iif((((time/comp.RenderEnd)*7-4)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-4)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-4)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-4)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-4)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-4)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-4)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-4)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-4)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-4)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-4)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-4)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-4)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-4)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-4)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-4)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-4)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-4)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-4)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-4)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-4)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_R4 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_R4", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_R4", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-4)*116)<8, 0, iif((((time/comp.RenderEnd)*7-4)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-4)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-4)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-4)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-4)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-4)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-4)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-4)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-4)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-4)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-4)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-4)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-4)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-4)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-4)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-4)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-4)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-4)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-4)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-4)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-4)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				N4 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Sean Anderson", },
+						Size = Input { Expression = "0.10016499999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.4945)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_N4 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-4)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-4)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-4)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-4)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-4)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-4)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-4)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-4)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-4)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-4)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-4)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-4)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-4)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-4)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-4)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-4)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N4", Source = "Output", },
+					},
+				},
+				XB_N4 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-4)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-4)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-4)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-4)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-4)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-4)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-4)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-4)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-4)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-4)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-4)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-4)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-4)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-4)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-4)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-4)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-4)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-4)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N4", Source = "Output", },
+					},
+				},
+				MA_N4 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_R4", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_N4", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-4)*116)<8, 0, iif((((time/comp.RenderEnd)*7-4)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-4)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-4)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-4)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-4)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-4)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-4)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-4)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-4)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-4)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-4)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-4)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-4)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-4)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-4)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-4)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-4)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-4)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-4)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-4)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-4)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_N4 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_N4", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_N4", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-4)*116)<8, 0, iif((((time/comp.RenderEnd)*7-4)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-4)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-4)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-4)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-4)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-4)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-4)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-4)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-4)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-4)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-4)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-4)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-4)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-4)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-4)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-4)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-4)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-4)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-4)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-4)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-4)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-4)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				R5 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Drums", },
+						Size = Input { Expression = "0.06164*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.601)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_R5 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-5)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-5)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-5)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-5)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-5)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-5)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-5)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-5)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-5)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-5)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-5)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-5)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-5)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-5)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-5)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-5)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R5", Source = "Output", },
+					},
+				},
+				XB_R5 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-5)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-5)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-5)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-5)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-5)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-5)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-5)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-5)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-5)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-5)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-5)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-5)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-5)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-5)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-5)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-5)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R5", Source = "Output", },
+					},
+				},
+				MA_R5 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_N4", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_R5", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-5)*116)<8, 0, iif((((time/comp.RenderEnd)*7-5)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-5)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-5)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-5)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-5)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-5)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-5)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-5)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-5)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-5)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-5)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-5)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-5)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-5)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-5)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-5)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-5)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-5)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-5)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-5)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-5)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_R5 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_R5", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_R5", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-5)*116)<8, 0, iif((((time/comp.RenderEnd)*7-5)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-5)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-5)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-5)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-5)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-5)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-5)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-5)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-5)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-5)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-5)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-5)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-5)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-5)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-5)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-5)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-5)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-5)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-5)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-5)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-5)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				N5 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Rich Beddoe", },
+						Size = Input { Expression = "0.10016499999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.4945)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_N5 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-5)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-5)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-5)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-5)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-5)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-5)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-5)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-5)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-5)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-5)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-5)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-5)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-5)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-5)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-5)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-5)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N5", Source = "Output", },
+					},
+				},
+				XB_N5 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-5)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-5)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-5)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-5)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-5)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-5)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-5)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-5)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-5)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-5)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-5)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-5)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-5)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-5)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-5)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-5)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-5)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-5)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N5", Source = "Output", },
+					},
+				},
+				MA_N5 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_R5", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_N5", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-5)*116)<8, 0, iif((((time/comp.RenderEnd)*7-5)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-5)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-5)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-5)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-5)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-5)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-5)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-5)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-5)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-5)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-5)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-5)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-5)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-5)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-5)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-5)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-5)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-5)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-5)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-5)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-5)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_N5 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_N5", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_N5", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-5)*116)<8, 0, iif((((time/comp.RenderEnd)*7-5)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-5)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-5)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-5)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-5)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-5)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-5)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-5)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-5)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-5)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-5)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-5)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-5)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-5)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-5)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-5)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-5)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-5)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-5)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-5)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-5)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-5)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				R6 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Shopkeeper", },
+						Size = Input { Expression = "0.06164*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.601)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_R6 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-6)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-6)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-6)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-6)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-6)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-6)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-6)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-6)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-6)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-6)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-6)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-6)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-6)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-6)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-6)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-6)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R6", Source = "Output", },
+					},
+				},
+				XB_R6 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.601)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-6)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-6)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-6)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-6)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-6)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-6)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-6)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-6)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-6)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-6)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-6)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-6)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-6)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-6)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-6)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-6)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "R6", Source = "Output", },
+					},
+				},
+				MA_R6 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_N5", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_R6", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-6)*116)<8, 0, iif((((time/comp.RenderEnd)*7-6)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-6)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-6)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-6)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-6)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-6)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-6)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-6)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-6)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-6)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-6)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-6)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-6)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-6)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-6)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-6)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-6)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-6)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-6)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-6)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-6)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_R6 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_R6", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_R6", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-6)*116)<8, 0, iif((((time/comp.RenderEnd)*7-6)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-6)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-6)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-6)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-6)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-6)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-6)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-6)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-6)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-6)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-6)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-6)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-6)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-6)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-6)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-6)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-6)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-6)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-6)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-6)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-6)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				N6 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Morshu", },
+						Size = Input { Expression = "0.10016499999999999*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.4945)", },
+						Font = Input { Expression = "Txt1.Font", },
+						Style = Input { Expression = "Txt1.Style", },
+						Red1 = Input { Expression = "Txt1.Red1", },
+						Green1 = Input { Expression = "Txt1.Green1", },
+						Blue1 = Input { Expression = "Txt1.Blue1", },
+					},
+				},
+				XA_N6 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5-(iif((((time/comp.RenderEnd)*7-6)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-6)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-6)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-6)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-6)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-6)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-6)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-6)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-6)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-6)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-6)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-6)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-6)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-6)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-6)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-6)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N6", Source = "Output", },
+					},
+				},
+				XB_N6 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.4945)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5+(iif((((time/comp.RenderEnd)*7-6)*116)<8, 0.83, iif((((time/comp.RenderEnd)*7-6)*116)<12, 0.83+(-0.10999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<16, 0.72+(-0.12)*((((time/comp.RenderEnd)*7-6)*116)-(12))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<20, 0.6+(-0.07999999999999996)*((((time/comp.RenderEnd)*7-6)*116)-(16))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<24, 0.52+(-0.09000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(20))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<28, 0.43+(-0.09999999999999998)*((((time/comp.RenderEnd)*7-6)*116)-(24))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<32, 0.33+(-0.08000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(28))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<36, 0.25+(-0.07999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(32))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<40, 0.17+(-0.1)*((((time/comp.RenderEnd)*7-6)*116)-(36))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<44, 0.07+(-0.07)*((((time/comp.RenderEnd)*7-6)*116)-(40))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-6)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-6)*116)<76, 0+(0.07)*((((time/comp.RenderEnd)*7-6)*116)-(73))/(3), iif((((time/comp.RenderEnd)*7-6)*116)<80, 0.07+(0.1)*((((time/comp.RenderEnd)*7-6)*116)-(76))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<84, 0.17+(0.07999999999999999)*((((time/comp.RenderEnd)*7-6)*116)-(80))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<88, 0.25+(0.08000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(84))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<92, 0.33+(0.09999999999999998)*((((time/comp.RenderEnd)*7-6)*116)-(88))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<96, 0.43+(0.09000000000000002)*((((time/comp.RenderEnd)*7-6)*116)-(92))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<100, 0.52+(0.08999999999999997)*((((time/comp.RenderEnd)*7-6)*116)-(96))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<104, 0.61+(0.08999999999999997)*((((time/comp.RenderEnd)*7-6)*116)-(100))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<108, 0.7+(0.13)*((((time/comp.RenderEnd)*7-6)*116)-(104))/(4), 0.83))))))))))))))))))))), 0.5)", },
+						Input = Input { SourceOp = "N6", Source = "Output", },
+					},
+				},
+				MA_N6 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MB_R6", Source = "Output", },
+						Foreground = Input { SourceOp = "XA_N6", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-6)*116)<8, 0, iif((((time/comp.RenderEnd)*7-6)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-6)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-6)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-6)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-6)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-6)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-6)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-6)*116)<44, 0.55+(0.44999999999999996)*((((time/comp.RenderEnd)*7-6)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-6)*116)<73, 1+(0)*((((time/comp.RenderEnd)*7-6)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-6)*116)<73.1, 1+(-0.44999999999999996)*((((time/comp.RenderEnd)*7-6)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-6)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-6)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-6)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-6)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-6)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-6)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-6)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-6)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+				MB_N6 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "MA_N6", Source = "Output", },
+						Foreground = Input { SourceOp = "XB_N6", Source = "Output", },
+						Blend = Input { Expression = "iif((((time/comp.RenderEnd)*7-6)*116)<8, 0, iif((((time/comp.RenderEnd)*7-6)*116)<12, 0+(0.4)*((((time/comp.RenderEnd)*7-6)*116)-(8))/(4), iif((((time/comp.RenderEnd)*7-6)*116)<36, 0.4+(0.0)*((((time/comp.RenderEnd)*7-6)*116)-(12))/(24), iif((((time/comp.RenderEnd)*7-6)*116)<42, 0.4+(0.12)*((((time/comp.RenderEnd)*7-6)*116)-(36))/(6), iif((((time/comp.RenderEnd)*7-6)*116)<43.9, 0.52+(0.030000000000000027)*((((time/comp.RenderEnd)*7-6)*116)-(42))/(1.8999999999999986), iif((((time/comp.RenderEnd)*7-6)*116)<44, 0.55+(-0.55)*((((time/comp.RenderEnd)*7-6)*116)-(43.9))/(0.10000000000000142), iif((((time/comp.RenderEnd)*7-6)*116)<73, 0+(0)*((((time/comp.RenderEnd)*7-6)*116)-(44))/(29), iif((((time/comp.RenderEnd)*7-6)*116)<73.1, 0+(0.55)*((((time/comp.RenderEnd)*7-6)*116)-(73))/(0.09999999999999432), iif((((time/comp.RenderEnd)*7-6)*116)<76, 0.55+(-0.030000000000000027)*((((time/comp.RenderEnd)*7-6)*116)-(73.1))/(2.9000000000000057), iif((((time/comp.RenderEnd)*7-6)*116)<96, 0.52+(-0.12)*((((time/comp.RenderEnd)*7-6)*116)-(76))/(20), iif((((time/comp.RenderEnd)*7-6)*116)<104, 0.4+(-0.2)*((((time/comp.RenderEnd)*7-6)*116)-(96))/(8), iif((((time/comp.RenderEnd)*7-6)*116)<108, 0.2+(-0.2)*((((time/comp.RenderEnd)*7-6)*116)-(104))/(4), 0))))))))))))", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_CreditsMirror"
+}

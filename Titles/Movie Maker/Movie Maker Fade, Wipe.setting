@@ -1,0 +1,80 @@
+{
+	Tools = ordered() {
+		MovieMaker_FadeWipe = GroupOperator {
+			NameSet = true,
+			Inputs = ordered() {
+				Input1 = InstanceInput { SourceOp = "Txt1", Source = "StyledText", Name = "Text", },
+				Input2 = InstanceInput { SourceOp = "Txt1", Source = "Font", },
+				Input3 = InstanceInput { SourceOp = "Txt1", Source = "Style", },
+				Input4 = InstanceInput { SourceOp = "Txt1", Source = "Red1", Name = "Text Color", ControlGroup = 1, Default = 1, },
+				Input5 = InstanceInput { SourceOp = "Txt1", Source = "Green1", ControlGroup = 1, Default = 1, },
+				Input6 = InstanceInput { SourceOp = "Txt1", Source = "Blue1", ControlGroup = 1, Default = 1, },
+				Input7 = InstanceInput { SourceOp = "BG", Source = "TopLeftRed", Name = "Background Color", ControlGroup = 2, Default = 0.0627, },
+				Input8 = InstanceInput { SourceOp = "BG", Source = "TopLeftGreen", ControlGroup = 2, Default = 0.251, },
+				Input9 = InstanceInput { SourceOp = "BG", Source = "TopLeftBlue", ControlGroup = 2, Default = 0.502, },
+				Input10 = InstanceInput { SourceOp = "BG", Source = "TopLeftAlpha", Name = "Background Opacity", Default = 1, },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "Merge1", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				BG = Background {
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						TopLeftRed = Input { Value = 0.0627, },
+						TopLeftGreen = Input { Value = 0.251, },
+						TopLeftBlue = Input { Value = 0.502, },
+						TopLeftAlpha = Input { Value = 1, },
+					},
+				},
+				Txt1 = TextPlus {
+					Inputs = {
+						Width = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						Height = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						StyledText = Input { Value = "Windows\nMovie Maker", },
+						Size = Input { Expression = "0.1541*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)", },
+						Center = Input { Expression = "Point(0.5, 0.508)", },
+						Font = Input { Value = "Microsoft Sans Serif", },
+						Style = Input { Value = "Regular", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input { Value = 1.0, },
+						Blue1 = Input { Value = 1.0, },
+					},
+				},
+				XF1 = Transform {
+					Inputs = {
+						UseSizeAndAspect = Input { Value = 0, },
+						Pivot = Input { Expression = "Point(0.5, 0.5)", },
+						XSize = Input { Expression = "1.032*(1)", },
+						YSize = Input { Expression = "1", },
+						Angle = Input { Expression = "0", },
+						Center = Input { Expression = "Point(0.5, 0.5)", },
+						Input = Input { SourceOp = "Txt1", Source = "Output", },
+					},
+				},
+				Msk = RectangleMask {
+					Inputs = {
+						MaskWidth = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Width", },
+						MaskHeight = Input { Expression = "comp:GetPrefs().Comp.FrameFormat.Height", },
+						Center = Input { Expression = "Point(((0.5-(0.3155*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)))+(2*(0.3155*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)))*((iif(((time/comp.RenderEnd)*116.0)<95, -2, iif(((time/comp.RenderEnd)*116.0)<96, -2+(1.98)*(((time/comp.RenderEnd)*116.0)-95)/1, iif(((time/comp.RenderEnd)*116.0)<99, -0.02+(0.16)*(((time/comp.RenderEnd)*116.0)-96)/3, iif(((time/comp.RenderEnd)*116.0)<102, 0.14+(0.18)*(((time/comp.RenderEnd)*116.0)-99)/3, iif(((time/comp.RenderEnd)*116.0)<105, 0.32+(0.15999999999999998)*(((time/comp.RenderEnd)*116.0)-102)/3, iif(((time/comp.RenderEnd)*116.0)<108, 0.48+(0.14)*(((time/comp.RenderEnd)*116.0)-105)/3, iif(((time/comp.RenderEnd)*116.0)<111, 0.62+(0.13)*(((time/comp.RenderEnd)*116.0)-108)/3, iif(((time/comp.RenderEnd)*116.0)<114, 0.75+(0.20999999999999996)*(((time/comp.RenderEnd)*116.0)-111)/3, iif(((time/comp.RenderEnd)*116.0)<116, 0.96+(0.14000000000000012)*(((time/comp.RenderEnd)*116.0)-114)/2, 1.1))))))))))+(iif(((time/comp.RenderEnd)*116.0)<2, 0, iif(((time/comp.RenderEnd)*116.0)<6, 0+(0.24)*(((time/comp.RenderEnd)*116.0)-2)/4, iif(((time/comp.RenderEnd)*116.0)<9, 0.24+(0.13)*(((time/comp.RenderEnd)*116.0)-6)/3, iif(((time/comp.RenderEnd)*116.0)<12, 0.37+(0.15000000000000002)*(((time/comp.RenderEnd)*116.0)-9)/3, iif(((time/comp.RenderEnd)*116.0)<15, 0.52+(0.17999999999999994)*(((time/comp.RenderEnd)*116.0)-12)/3, iif(((time/comp.RenderEnd)*116.0)<18, 0.7+(0.14)*(((time/comp.RenderEnd)*116.0)-15)/3, iif(((time/comp.RenderEnd)*116.0)<21, 0.84+(0.16000000000000003)*(((time/comp.RenderEnd)*116.0)-18)/3, iif(((time/comp.RenderEnd)*116.0)<23, 1.0+(0.06000000000000005)*(((time/comp.RenderEnd)*116.0)-21)/2, iif(((time/comp.RenderEnd)*116.0)<24, 1.06+(1.94)*(((time/comp.RenderEnd)*116.0)-23)/1, 3)))))))))))/2), 0.5)", },
+						Width = Input { Expression = "((2*(0.3155*(4/3)/(comp:GetPrefs().Comp.FrameFormat.Width/comp:GetPrefs().Comp.FrameFormat.Height)))*((iif(((time/comp.RenderEnd)*116.0)<2, 0, iif(((time/comp.RenderEnd)*116.0)<6, 0+(0.24)*(((time/comp.RenderEnd)*116.0)-2)/4, iif(((time/comp.RenderEnd)*116.0)<9, 0.24+(0.13)*(((time/comp.RenderEnd)*116.0)-6)/3, iif(((time/comp.RenderEnd)*116.0)<12, 0.37+(0.15000000000000002)*(((time/comp.RenderEnd)*116.0)-9)/3, iif(((time/comp.RenderEnd)*116.0)<15, 0.52+(0.17999999999999994)*(((time/comp.RenderEnd)*116.0)-12)/3, iif(((time/comp.RenderEnd)*116.0)<18, 0.7+(0.14)*(((time/comp.RenderEnd)*116.0)-15)/3, iif(((time/comp.RenderEnd)*116.0)<21, 0.84+(0.16000000000000003)*(((time/comp.RenderEnd)*116.0)-18)/3, iif(((time/comp.RenderEnd)*116.0)<23, 1.0+(0.06000000000000005)*(((time/comp.RenderEnd)*116.0)-21)/2, iif(((time/comp.RenderEnd)*116.0)<24, 1.06+(1.94)*(((time/comp.RenderEnd)*116.0)-23)/1, 3))))))))))-(iif(((time/comp.RenderEnd)*116.0)<95, -2, iif(((time/comp.RenderEnd)*116.0)<96, -2+(1.98)*(((time/comp.RenderEnd)*116.0)-95)/1, iif(((time/comp.RenderEnd)*116.0)<99, -0.02+(0.16)*(((time/comp.RenderEnd)*116.0)-96)/3, iif(((time/comp.RenderEnd)*116.0)<102, 0.14+(0.18)*(((time/comp.RenderEnd)*116.0)-99)/3, iif(((time/comp.RenderEnd)*116.0)<105, 0.32+(0.15999999999999998)*(((time/comp.RenderEnd)*116.0)-102)/3, iif(((time/comp.RenderEnd)*116.0)<108, 0.48+(0.14)*(((time/comp.RenderEnd)*116.0)-105)/3, iif(((time/comp.RenderEnd)*116.0)<111, 0.62+(0.13)*(((time/comp.RenderEnd)*116.0)-108)/3, iif(((time/comp.RenderEnd)*116.0)<114, 0.75+(0.20999999999999996)*(((time/comp.RenderEnd)*116.0)-111)/3, iif(((time/comp.RenderEnd)*116.0)<116, 0.96+(0.14000000000000012)*(((time/comp.RenderEnd)*116.0)-114)/2, 1.1))))))))))))", },
+						Height = Input { Expression = "2", },
+						SoftEdge = Input { Value = 0.02, },
+					},
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input { SourceOp = "BG", Source = "Output", },
+						Foreground = Input { SourceOp = "XF1", Source = "Output", },
+						Blend = Input { Expression = "(iif(((time/comp.RenderEnd)*116.0)<3, 0, iif(((time/comp.RenderEnd)*116.0)<6, 0+(0.5)*(((time/comp.RenderEnd)*116.0)-3)/3, iif(((time/comp.RenderEnd)*116.0)<9, 0.5+(0.37)*(((time/comp.RenderEnd)*116.0)-6)/3, iif(((time/comp.RenderEnd)*116.0)<12, 0.87+(0.13)*(((time/comp.RenderEnd)*116.0)-9)/3, 1)))))*(iif(((time/comp.RenderEnd)*116.0)<104, 1, iif(((time/comp.RenderEnd)*116.0)<108, 1+(-0.20999999999999996)*(((time/comp.RenderEnd)*116.0)-104)/4, iif(((time/comp.RenderEnd)*116.0)<111, 0.79+(-0.42000000000000004)*(((time/comp.RenderEnd)*116.0)-108)/3, iif(((time/comp.RenderEnd)*116.0)<114, 0.37+(-0.29)*(((time/comp.RenderEnd)*116.0)-111)/3, iif(((time/comp.RenderEnd)*116.0)<116, 0.08+(-0.08)*(((time/comp.RenderEnd)*116.0)-114)/2, 0))))))", },
+						EffectMask = Input { SourceOp = "Msk", Source = "Mask", },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_FadeWipe"
+}

@@ -1,0 +1,58 @@
+{
+	Tools = ordered() {
+		MovieMaker_Dissolve = GroupOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = ordered() {
+				MainInput1 = InstanceInput { SourceOp = "WMMWipe", Source = "Image1", },
+				MainInput2 = InstanceInput { SourceOp = "WMMWipe", Source = "Image2", },
+				Input1 = InstanceInput { SourceOp = "WMMWipe", Source = "NumberIn3", Name = "Grain (rows)", Default = 480, MinScale = 10, MaxScale = 2160, },
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput { SourceOp = "WMMWipe", Source = "Output", }
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				WMMWipe = Custom {
+					CtrlWZoom = false,
+					Inputs = {
+						NumberIn1 = Input { SourceOp = "WMMProgress", Source = "Value", },
+						NumberIn2 = Input { Value = 0.0, },
+						NumberIn3 = Input { Value = 480, },
+						Setup1 = Input { Value = "w/h", },
+						Setup2 = Input { Value = "1", },
+						Setup3 = Input { Value = "max(0.000000*n2, 0.000001)", },
+						Setup4 = Input { Value = "0 + (s2-(0))*(0.00000+(1.00000)*n1)", },
+						Intermediate1 = Input { Value = "floor(x*s1*n3)", },
+						Intermediate2 = Input { Value = "floor((1-y)*n3)", },
+						Intermediate3 = Input { Value = "((sin((i1*1.7321+((sin((i2*0.3183)*12.9898+78.233)*43758.5453)-floor(sin((i2*0.3183)*12.9898+78.233)*43758.5453))*997.0)*12.9898+78.233)*43758.5453)-floor(sin((i1*1.7321+((sin((i2*0.3183)*12.9898+78.233)*43758.5453)-floor(sin((i2*0.3183)*12.9898+78.233)*43758.5453))*997.0)*12.9898+78.233)*43758.5453))", },
+						Intermediate4 = Input { Value = "if(n1<=0, 0, if(n1>=1, 1, min(max((s4-i3)/s3+0.5, 0), 1)))", },
+						RedExpression = Input { Value = "r1+(r2-r1)*i4", },
+						GreenExpression = Input { Value = "g1+(g2-g1)*i4", },
+						BlueExpression = Input { Value = "b1+(b2-b1)*i4", },
+						AlphaExpression = Input { Value = "a1+(a2-a1)*i4", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 0 } },
+				},
+				WMMProgress = LUTLookup {
+					CtrlWZoom = false,
+					Inputs = {
+						Curve = Input { Value = FuID { "Custom" }, },
+						Lookup = Input { SourceOp = "WMMProgressLookup", Source = "Value", },
+					},
+				},
+				WMMProgressLookup = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 255, Green = 255, Blue = 255 },
+					CtrlWZoom = false,
+				},
+			},
+		},
+	},
+	ActiveTool = "MovieMaker_Dissolve"
+}
